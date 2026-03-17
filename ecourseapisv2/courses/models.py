@@ -4,7 +4,7 @@ from cloudinary.models import CloudinaryField
 from ckeditor.fields import RichTextField
 
 class User(AbstractUser):
-    pass
+    avatar = CloudinaryField(null=True)
 
 class BaseModel(models.Model):
     active = models.BooleanField(default=True)
