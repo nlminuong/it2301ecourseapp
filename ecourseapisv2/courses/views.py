@@ -55,6 +55,6 @@ class LessonViewSet(viewsets.ViewSet, generics.RetrieveAPIView):
 class UserViewSet(viewsets.ViewSet, generics.CreateAPIView):
     queryset = User.objects.filter(is_active=True)
     serializer_class = serializers.UserSerializer
-    parser_classes = [parsers.MultiPartParser]
+    parser_classes = [parsers.MultiPartParser] #dùng để xử lý dữ liệu gửi lên dạng form-data (multipart)
 
 
