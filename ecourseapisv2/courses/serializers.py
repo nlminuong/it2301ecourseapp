@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from yaml import TagToken
 
-from courses.models import Category, Course, Lesson, Tag, User
+from courses.models import Category, Course, Lesson, Tag, User, Comment
 from rest_framework import serializers
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -61,5 +61,11 @@ class UserSerializer(ModelSerializer):
         return user
 
 
+
 # Tạo CommentSerializer
 # Qua ViewSet: tạo UserViewSet  ( có ảnh)
+
+class CommentSerializer(ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['id', 'content']
