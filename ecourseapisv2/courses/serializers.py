@@ -43,10 +43,23 @@ class LessonDetailsSerializer(ModelSerializer):
         model = LessonSerializer.Meta.model
         fields = LessonSerializer.Meta.fields + ['content','tags']
 
-class UserSerializer(ModelSerializer):
+    def to_representation(self, lesson):
+        data = super().to_representation(lesson)
+        request = self.context.get('request')
+        if request and request.user and request.user.is_authenticated:
+            data['like'] = lesson.like_set.filter(user=request.user, active=True).exists()
+
+        return data
+
+class SimpleUserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','first_name','last_name','email','username','password','avatar' ]
+        fields =  ['id','first_name','last_name','email']
+
+class UserSerializer(SimpleUserSerializer):
+    class Meta:
+        model = SimpleUserSerializer.Meta.model
+        fields = SimpleUserSerializer.Meta.fields + ['username','password','avatar' ]
         extra_kwargs = {
             'password':{
                 'write_only':True
@@ -68,4 +81,14 @@ class UserSerializer(ModelSerializer):
 class CommentSerializer(ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['id', 'content']
+        fields = ['id', 'content', 'user','lesson']
+        extra_kwargs = {
+            'lesson':{
+                'write_only': True
+            }
+        }
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['user'] = UserSerializer(instance.user).data
+        return data
