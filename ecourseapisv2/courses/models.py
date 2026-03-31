@@ -23,7 +23,7 @@ class Category(BaseModel):
 class Course(BaseModel):
     subject = models.CharField(max_length=255)
     description = models.TextField(null=True)
-    image = CloudinaryField(null=True)
+    image = CloudinaryField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
 
     class Meta:
@@ -35,7 +35,7 @@ class Course(BaseModel):
 class Lesson(BaseModel):
     subject = models.CharField(max_length=255)
     content = RichTextField(null=True)
-    image = CloudinaryField()
+    image = CloudinaryField(null=True, blank=True)
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
     tags = models.ManyToManyField('Tag')
 
