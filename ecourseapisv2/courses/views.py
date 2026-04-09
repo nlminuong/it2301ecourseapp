@@ -48,9 +48,10 @@ class LessonViewSet(viewsets.ViewSet, generics.RetrieveAPIView):
     serializer_class = serializers.LessonDetailsSerializer
 
     def get_permissions(self):
-        if self.action in ['get_comment', 'like'] and self.request.method.__eq__('POST'):
+        if self.action in ['get_comments', 'like'] and self.request.method.__eq__('POST'):
             return [permissions.IsAuthenticated()]
         return [permissions.AllowAny]
+
     @action(methods=['GET','POST'], detail=True, url_path='comments')
     def get_comments(self, request, pk):
         if request.method.__eq__('POST'):
@@ -62,6 +63,7 @@ class LessonViewSet(viewsets.ViewSet, generics.RetrieveAPIView):
             s.is_valid(raise_exception=True)
             c = s.save()
             return Response(serializers.CommentSerializer(c).data, status=status.HTTP_200_OK)
+
         comments = self.get_object().comment_set.select_related('user').filter(active=True)
         return Response(serializers.CommentSerializer(comments, many=True).data, status=status.HTTP_200_OK)
 

@@ -97,7 +97,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'coursedb_test',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '2351050130',
         'HOST': ''  # mặc định localhost
     }
 }

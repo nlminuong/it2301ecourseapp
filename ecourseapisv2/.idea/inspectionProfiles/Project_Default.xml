@@ -8,6 +8,31 @@
           <option value="pywinpty" />
           <option value="scikit-learn" />
           <option value="threadpoolctl" />
+          <option value="blinker" />
+          <option value="certifi" />
+          <option value="click" />
+          <option value="cloudinary" />
+          <option value="colorama" />
+          <option value="Flask" />
+          <option value="Flask-Admin" />
+          <option value="Flask-Login" />
+          <option value="Flask-SQLAlchemy" />
+          <option value="greenlet" />
+          <option value="iniconfig" />
+          <option value="itsdangerous" />
+          <option value="Jinja2" />
+          <option value="MarkupSafe" />
+          <option value="packaging" />
+          <option value="pluggy" />
+          <option value="Pygments" />
+          <option value="PyMySQL" />
+          <option value="pytest" />
+          <option value="six" />
+          <option value="SQLAlchemy" />
+          <option value="typing_extensions" />
+          <option value="urllib3" />
+          <option value="Werkzeug" />
+          <option value="WTForms" />
         </list>
       </option>
     </inspection_tool>
